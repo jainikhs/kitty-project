@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kitty-project
+spec:
+  replicas: 1  # Deploy two pods for redundancy and scaling
+  selector:
+    matchLabels:
+      app: kitty-project  # This label matches the service selector
+  template:
+    metadata:
+      labels:
+        app: kitty-project  # Labels should match the service selector
+    spec:
+      containers:
+        - name: kitty-project
+          image: jainnikh3/kitty_new:latest  # Make sure this is the correct Docker image
+          ports:
+            - containerPort: 8501  # Port Streamlit listens on by default
